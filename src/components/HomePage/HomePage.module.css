@@ -8,7 +8,6 @@
   overflow: hidden;
 }
 
-/* Декоративні фігури */
 .shape {
   position: absolute;
   opacity: 0.08;
@@ -19,7 +18,6 @@
   mix-blend-mode: overlay;
 }
 
-/* Прямі лінії */
 .line {
   width: 2px;
   height: 150px;
@@ -30,7 +28,6 @@
   transform: rotate(20deg);
 }
 
-/* Змійки (використання SVG або clip-path не потрібно — імітація вигину через border-radius) */
 .wavy {
   width: 60px;
   height: 60px;
@@ -41,7 +38,6 @@
   transform: rotate(45deg);
 }
 
-/* Приклад позиціювання фігур */
 .shape1 {
   top: 20%;
   left: 10%;
@@ -87,7 +83,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative; /* додано */
+  position: relative;
   background: transparent;
 }
 
@@ -184,7 +180,7 @@
   color: white;
   font-size: 1rem;
   transition: border 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.2); /* 🔲 тонка світла рамка */
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 input:focus {
