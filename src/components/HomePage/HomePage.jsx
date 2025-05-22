@@ -5,6 +5,18 @@ import styles from "./HomePage.module.css";
 const HomePage = () => {
   return (
     <div className={styles.container}>
+      {/* 🎨 Декоративні фігури */}
+      <div className={`${styles.shape} ${styles.shape1}`}></div>
+      <div className={`${styles.shape} ${styles.shape2}`}></div>
+      <div className={`${styles.shape} ${styles.shape3}`}></div>
+
+      <div className={`${styles.line} ${styles.line1}`}></div>
+      <div className={`${styles.line} ${styles.line2}`}></div>
+
+      <div className={`${styles.wavy} ${styles.wavy1}`}></div>
+      <div className={`${styles.wavy} ${styles.wavy2}`}></div>
+
+      {/* Основний контент */}
       <div className={styles.left}>
         <div className={styles.logo}>🧠 Recovery</div>
         <h1 className={styles.title}>Welcome!</h1>
