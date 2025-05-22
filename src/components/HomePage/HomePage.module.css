@@ -83,7 +83,7 @@
 
 .left {
   flex: 1;
-  padding: 5rem 4rem;
+  padding: 5rem 5rem 5rem 12rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -97,14 +97,14 @@
 }
 
 .title {
-  font-size: 3.5rem;
+  font-size: 87px;
   font-weight: 800;
   margin-bottom: 1rem;
 }
 
 .description {
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.2;
   max-width: 400px;
   margin-bottom: 2rem;
   color: #d1c4e9;
@@ -133,15 +133,18 @@
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  padding: 3rem 2.5rem;
-  border-radius: 20px;
-  width: 350px;
+  background: rgba(255, 255, 255, 0.079);
+  backdrop-filter: blur(20px);
+  padding: 4rem 3rem;
+
+  width: 420px;
+  min-height: 320px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  justify-content: center;
+  margin-right: 60px;
 }
 
 .signin {
