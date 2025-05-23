@@ -30,7 +30,7 @@ const SignupPage = () => {
           Зареєструватися
         </Link>
         <p className={styles.loginHint}>
-          Вже маєш акаунт? <Link to="/">Увійди</Link>
+          Вже маєш акаунт? <Link to="/">Увійти</Link>
         </p>
       </div>
     </div>
