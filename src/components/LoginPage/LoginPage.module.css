@@ -1,0 +1,161 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #2a003f, #440055);
+  font-family: "Poppins", sans-serif;
+  color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+.backgroundShapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.shape,
+.line,
+.wavy {
+  position: absolute;
+  opacity: 0.07;
+  background: white;
+  mix-blend-mode: overlay;
+}
+
+.shape {
+  border-radius: 50%;
+}
+
+.shape1 {
+  top: 20%;
+  left: 10%;
+  width: 100px;
+  height: 100px;
+}
+.shape2 {
+  bottom: 15%;
+  right: 15%;
+  width: 60px;
+  height: 60px;
+}
+
+.line {
+  width: 2px;
+  height: 150px;
+  border-radius: 1px;
+  background: white;
+}
+
+.line1 {
+  top: 10%;
+  left: 60%;
+}
+.line2 {
+  bottom: 5%;
+  left: 30%;
+  transform: rotate(-45deg);
+}
+
+.wavy {
+  width: 60px;
+  height: 60px;
+  border: 2px solid white;
+  border-radius: 50% 50% 0 0;
+}
+
+.wavy1 {
+  top: 60%;
+  right: 20%;
+  transform: rotate(45deg);
+}
+.wavy2 {
+  bottom: 30%;
+  left: 15%;
+  transform: rotate(-30deg);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  padding: 4rem 3rem;
+  width: 420px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  z-index: 1;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  border-radius: 12px;
+}
+
+.logoImage {
+  height: 60px;
+  width: auto;
+  margin: 0 auto 1.5rem auto;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.logoImage:hover {
+  transform: scale(1.05);
+}
+
+.signin {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.2rem;
+  color: white;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.input:focus {
+  border-color: #ff7e5f;
+  outline: none;
+}
+
+.input::placeholder {
+  color: #ccc;
+}
+
+.submit {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  padding: 0.8rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: background 0.3s ease;
+}
+
+.submit:hover {
+  opacity: 0.9;
+}
+
+.registerHint {
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.registerHint a {
+  color: #ff7e5f;
+  text-decoration: underline;
+}
