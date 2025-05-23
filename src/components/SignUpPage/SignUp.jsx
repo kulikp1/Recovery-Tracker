@@ -26,7 +26,7 @@ const SignupPage = () => {
           placeholder="Повторіть пароль"
           className={styles.input}
         />
-        <Link to="/dashboard" className={styles.submit}>
+        <Link to="/recoveryTracker" className={styles.submit}>
           Зареєструватися
         </Link>
         <p className={styles.loginHint}>
