@@ -41,7 +41,7 @@ const HomePage = () => {
             placeholder="Пароль"
             className={styles.input}
           />
-          <Link to="/dashboard" className={styles.submit}>
+          <Link to="/recoveryTracker" className={styles.submit}>
             Увійти
           </Link>
 
