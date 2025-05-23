@@ -84,14 +84,12 @@
   backdrop-filter: blur(20px);
   padding: 4rem 3rem;
   width: 420px;
-  min-height: 320px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
   justify-content: center;
   z-index: 1;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
   border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
 }
 
 .logoImage {
@@ -106,7 +104,7 @@
   transform: scale(1.05);
 }
 
-.signin {
+.signup {
   font-size: 2rem;
   font-weight: 700;
   text-align: center;
@@ -149,13 +147,13 @@
   opacity: 0.9;
 }
 
-.registerHint {
+.loginHint {
   margin-top: 1.2rem;
   font-size: 0.9rem;
   text-align: center;
 }
 
-.registerHint a {
+.loginHint a {
   color: #ff7e5f;
   text-decoration: underline;
 }

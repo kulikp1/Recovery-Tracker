@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./LoginPage.module.css";
+import styles from "./SignUp.module.css";
 import logo from "../../../assets/logo.png";
 
-const LoginPage = () => {
+const SignupPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.backgroundShapes}>
@@ -17,18 +17,24 @@ const LoginPage = () => {
 
       <div className={styles.card}>
         <img src={logo} alt="Logo" className={styles.logoImage} />
-        <h2 className={styles.signin}>Увійти</h2>
-        <input type="text" placeholder="Email" className={styles.input} />
+        <h2 className={styles.signup}>Реєстрація</h2>
+        <input type="text" placeholder="Ім’я" className={styles.input} />
+        <input type="email" placeholder="Email" className={styles.input} />
         <input type="password" placeholder="Пароль" className={styles.input} />
+        <input
+          type="password"
+          placeholder="Повторіть пароль"
+          className={styles.input}
+        />
         <Link to="/dashboard" className={styles.submit}>
-          Увійти
+          Зареєструватися
         </Link>
-        <p className={styles.registerHint}>
-          Не маєш акаунта? <Link to="/signup">Зареєструйся</Link>
+        <p className={styles.loginHint}>
+          Вже маєш акаунт? <Link to="/">Увійди</Link>
         </p>
       </div>
     </div>
   );
 };
 
-export default LoginPage;
+export default SignupPage;
