@@ -201,7 +201,8 @@ input:focus {
   color: white;
   text-decoration: none;
   margin-top: 1rem;
-  transition: background 0.3s ease;
+  transition: opacity 0.3s ease;
+  border: none;
 }
 
 .submit:hover {
