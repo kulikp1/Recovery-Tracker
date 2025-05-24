@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./SignUp.module.css";
 import logo from "../../../assets/logo.png";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -16,6 +16,7 @@ const SignupPage = () => {
 
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const validateEmail = (email) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
@@ -39,7 +40,6 @@ const SignupPage = () => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
 
-    // Перевірка у реальному часі
     const error = validateField(name, value);
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
@@ -53,7 +53,6 @@ const SignupPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Повна перевірка перед надсиланням
     const newErrors = {};
     for (let field in form) {
       const error = validateField(field, form[field]);
@@ -70,9 +69,14 @@ const SignupPage = () => {
       const res = await fetch(
         "https://68321216c3f2222a8cb15cdb.mockapi.io/users"
       );
-      const users = await res.json();
+      let users = await res.json();
+
+      if (!Array.isArray(users)) {
+        users = [];
+      }
+
       const existingUser = users.find(
-        (u) => u.email.toLowerCase() === form.email.toLowerCase()
+        (u) => u.email && u.email.toLowerCase() === form.email.toLowerCase()
       );
 
       if (existingUser) {
@@ -92,9 +96,13 @@ const SignupPage = () => {
         }),
       });
 
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ name: form.name, email: form.email })
+      );
+
       toast.success("Реєстрація успішна!");
-      setForm({ name: "", email: "", password: "", confirmPassword: "" });
-      setErrors({});
+      navigate("/recoveryTracker");
     } catch (error) {
       console.error(error);
       toast.error("Сталася помилка. Спробуйте ще раз.");

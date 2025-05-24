@@ -3,7 +3,7 @@ import "./App.css";
 
 import HomePage from "../HomePage/HomePage";
 import SignupPage from "../SignUpPage/SignUp";
-// import RecoveryTracker from "../RecoveryTracker/RecoveryTracker";
+import RecoveryTracker from "../recoveryPage/recoveryPage";
 import PrivateRoute from "../../PrivateRoute";
 
 function App() {
@@ -13,7 +13,11 @@ function App() {
       <Route path="/signup" element={<SignupPage />} />
       <Route
         path="/recoveryTracker"
-        element={<PrivateRoute>{/* <RecoveryTracker /> */}</PrivateRoute>}
+        element={
+          <PrivateRoute>
+            <RecoveryTracker />
+          </PrivateRoute>
+        }
       />
     </Routes>
   );
