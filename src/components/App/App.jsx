@@ -1,14 +1,20 @@
 import { Routes, Route } from "react-router-dom";
-
 import "./App.css";
+
 import HomePage from "../HomePage/HomePage";
 import SignupPage from "../SignUpPage/SignUp";
+// import RecoveryTracker from "../RecoveryTracker/RecoveryTracker";
+import PrivateRoute from "../../PrivateRoute";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/signup" element={<SignupPage />} />
+      <Route
+        path="/recoveryTracker"
+        element={<PrivateRoute>{/* <RecoveryTracker /> */}</PrivateRoute>}
+      />
     </Routes>
   );
 }
