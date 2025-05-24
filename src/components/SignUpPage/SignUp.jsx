@@ -68,10 +68,14 @@ const SignupPage = () => {
 
     try {
       const res = await fetch(
-        `https://68321216c3f2222a8cb15cdb.mockapi.io/users?email=${form.email}`
+        "https://68321216c3f2222a8cb15cdb.mockapi.io/users"
       );
       const users = await res.json();
-      if (users.length > 0) {
+      const existingUser = users.find(
+        (u) => u.email.toLowerCase() === form.email.toLowerCase()
+      );
+
+      if (existingUser) {
         toast.error("Користувач з таким email вже існує");
         return;
       }
