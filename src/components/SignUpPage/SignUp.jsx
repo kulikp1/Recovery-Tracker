@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./SignUp.module.css";
 import logo from "../../../assets/logo.png";
-import CryptoJS from "crypto-js";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import bcrypt from "bcryptjs";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignupPage = () => {
   const [form, setForm] = useState({
@@ -14,67 +13,96 @@ const SignupPage = () => {
     password: "",
     confirmPassword: "",
   });
-  const navigate = useNavigate();
+
+  const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
+
+  const validateEmail = (email) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
+
+  const validateField = (name, value) => {
+    switch (name) {
+      case "name":
+        return value.trim() === "" ? "Введіть ім’я" : "";
+      case "email":
+        return !validateEmail(value) ? "Некоректний email" : "";
+      case "password":
+        return value.length < 6 ? "Мінімум 6 символів" : "";
+      case "confirmPassword":
+        return value !== form.password ? "Паролі не співпадають" : "";
+      default:
+        return "";
+    }
+  };
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+
+    // Перевірка у реальному часі
+    const error = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: error }));
+  };
+
+  const handleBlur = (e) => {
+    const { name, value } = e.target;
+    const error = validateField(name, value);
+    setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (form.password !== form.confirmPassword) {
-      toast.error("Паролі не співпадають");
+    // Повна перевірка перед надсиланням
+    const newErrors = {};
+    for (let field in form) {
+      const error = validateField(field, form[field]);
+      if (error) newErrors[field] = error;
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      toast.error("Виправте помилки у формі");
       return;
     }
 
     try {
-      // Перевірка чи такий email вже існує
-      const response = await axios.get(
-        "https://68321216c3f2222a8cb15cdb.mockapi.io/users"
+      const res = await fetch(
+        `https://68321216c3f2222a8cb15cdb.mockapi.io/users?email=${form.email}`
       );
-      const existingUser = response.data.find(
-        (user) => user.email === form.email
-      );
-
-      if (existingUser) {
+      const users = await res.json();
+      if (users.length > 0) {
         toast.error("Користувач з таким email вже існує");
         return;
       }
 
-      const hashedPassword = CryptoJS.SHA256(form.password).toString();
+      const hashedPassword = await bcrypt.hash(form.password, 10);
 
-      await axios.post("https://68321216c3f2222a8cb15cdb.mockapi.io/users", {
-        name: form.name,
-        email: form.email,
-        password: hashedPassword,
+      await fetch("https://68321216c3f2222a8cb15cdb.mockapi.io/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          password: hashedPassword,
+        }),
       });
 
-      toast.success("Реєстрація успішна! Перенаправлення...");
-
-      setTimeout(() => {
-        navigate("/recoveryTracker");
-      }, 2000);
+      toast.success("Реєстрація успішна!");
+      setForm({ name: "", email: "", password: "", confirmPassword: "" });
+      setErrors({});
     } catch (error) {
-      console.error("Помилка:", error.message);
-      toast.error("Щось пішло не так. Спробуйте ще раз.");
+      console.error(error);
+      toast.error("Сталася помилка. Спробуйте ще раз.");
     }
   };
 
   return (
     <div className={styles.container}>
-      <ToastContainer position="top-center" autoClose={2000} />
+      <Toaster position="top-right" />
+      <div className={styles.backgroundShapes}>{/* Shapes... */}</div>
 
-      <div className={styles.backgroundShapes}>
-        <div className={`${styles.shape} ${styles.shape1}`}></div>
-        <div className={`${styles.shape} ${styles.shape2}`}></div>
-        <div className={`${styles.line} ${styles.line1}`}></div>
-        <div className={`${styles.line} ${styles.line2}`}></div>
-        <div className={`${styles.wavy} ${styles.wavy1}`}></div>
-        <div className={`${styles.wavy} ${styles.wavy2}`}></div>
-      </div>
-
-      <form onSubmit={handleSubmit} className={styles.card}>
+      <form onSubmit={handleSubmit} noValidate className={styles.card}>
         <img src={logo} alt="Logo" className={styles.logoImage} />
         <h2 className={styles.signup}>Реєстрація</h2>
 
@@ -84,36 +112,61 @@ const SignupPage = () => {
           placeholder="Ім’я"
           value={form.name}
           onChange={handleChange}
+          onBlur={handleBlur}
           className={styles.input}
-          required
         />
+        {errors.name && <p className={styles.error}>{errors.name}</p>}
+
         <input
           type="email"
           name="email"
           placeholder="Email"
           value={form.email}
           onChange={handleChange}
+          onBlur={handleBlur}
           className={styles.input}
-          required
         />
-        <input
-          type="password"
-          name="password"
-          placeholder="Пароль"
-          value={form.password}
-          onChange={handleChange}
-          className={styles.input}
-          required
-        />
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Повторіть пароль"
-          value={form.confirmPassword}
-          onChange={handleChange}
-          className={styles.input}
-          required
-        />
+        {errors.email && <p className={styles.error}>{errors.email}</p>}
+
+        <div className={styles.passwordWrapper}>
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            placeholder="Пароль"
+            value={form.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className={styles.inputWithIcon}
+          />
+          <span
+            onClick={() => setShowPassword(!showPassword)}
+            className={styles.eyeIcon}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
+        {errors.password && <p className={styles.error}>{errors.password}</p>}
+
+        <div className={styles.passwordWrapper}>
+          <input
+            type={showPassword ? "text" : "password"}
+            name="confirmPassword"
+            placeholder="Повторіть пароль"
+            value={form.confirmPassword}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            className={styles.inputWithIcon}
+          />
+          <span
+            onClick={() => setShowPassword(!showPassword)}
+            className={styles.eyeIcon}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
+        {errors.confirmPassword && (
+          <p className={styles.error}>{errors.confirmPassword}</p>
+        )}
 
         <button type="submit" className={styles.submit}>
           Зареєструватися
