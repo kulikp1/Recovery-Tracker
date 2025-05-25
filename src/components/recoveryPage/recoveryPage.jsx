@@ -19,28 +19,22 @@ const RecoveryPage = () => {
       });
   }, []);
 
-  // Перераховуємо taskChunks динамічно при зміні tasks
+  // Розбивка задач на дні по 3 шт
   const taskChunks = useMemo(() => {
-    const chunkTasks = (arr, size) => {
-      const result = [];
-      for (let i = 0; i < arr.length; i += size) {
-        result.push(arr.slice(i, i + size));
-      }
-      return result;
-    };
-    return chunkTasks(tasks, 3);
+    const result = [];
+    for (let i = 0; i < tasks.length; i += 3) {
+      result.push(tasks.slice(i, i + 3));
+    }
+    return result;
   }, [tasks]);
 
-  // Динамічні назви днів
+  // Мітки днів
   const dayLabels = useMemo(() => {
-    return [
-      "Сьогодні",
-      "Завтра",
-      "Післязавтра",
-      ...Array(taskChunks.length - 3)
-        .fill("")
-        .map((_, i) => `День ${i + 4}`),
-    ];
+    const extraDaysCount = Math.max(0, taskChunks.length - 3);
+    const extraLabels = Array(extraDaysCount)
+      .fill("")
+      .map((_, i) => `День ${i + 4}`);
+    return ["Сьогодні", "Завтра", "Післязавтра", ...extraLabels];
   }, [taskChunks.length]);
 
   const currentDayTasks = taskChunks[selectedDayIndex] || [];
@@ -64,21 +58,20 @@ const RecoveryPage = () => {
         <h1 className={styles.title}>Привіт, Олено!</h1>
         <p className={styles.subtitle}>Твої завдання на день</p>
 
-        {!loading && taskChunks.length > 1 && (
-          <div className={styles.daySwitcher}>
-            {dayLabels.slice(0, taskChunks.length).map((label, idx) => (
-              <button
-                key={idx}
-                className={`${styles.dayButton} ${
-                  selectedDayIndex === idx ? styles.active : ""
-                }`}
-                onClick={() => setSelectedDayIndex(idx)}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-        )}
+        {/* Перемикач днів */}
+        <div className={styles.daySwitcher}>
+          {dayLabels.map((label, idx) => (
+            <button
+              key={idx}
+              className={`${styles.dayButton} ${
+                selectedDayIndex === idx ? styles.active : ""
+              }`}
+              onClick={() => setSelectedDayIndex(idx)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
 
         {loading ? (
           <p>Завантаження завдань...</p>
