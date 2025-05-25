@@ -6,7 +6,7 @@
   background: linear-gradient(to bottom right, #2a003f, #440055);
   color: white;
   overflow: hidden;
-  padding: 0 8rem;
+  padding: 3rem 8rem;
   gap: 3rem;
 }
 
@@ -16,7 +16,8 @@
   flex-direction: column;
   gap: 2rem;
   overflow-y: auto;
-  padding-top: 4rem; /* Додатковий відступ зверху */
+  padding-top: 4rem;
+  max-height: calc(100vh - 80px);
 }
 
 .title {

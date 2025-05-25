@@ -30,7 +30,7 @@ const RecoveryPage = () => {
   const completedCount = currentDayTasks.filter((t) => t.completed).length;
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Header />
       <div className={styles.container}>
         <div className={styles.pageContent}>
