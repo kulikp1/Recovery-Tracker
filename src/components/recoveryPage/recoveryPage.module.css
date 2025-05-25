@@ -1,12 +1,12 @@
 .container {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: calc(100vh - 80px); /* Урахування висоти хедера */
   font-family: "Poppins", sans-serif;
   background: linear-gradient(to bottom right, #2a003f, #440055);
   color: white;
   overflow: hidden;
-  padding: 4rem 8rem;
+  padding: 0 8rem;
   gap: 3rem;
 }
 
@@ -16,6 +16,7 @@
   flex-direction: column;
   gap: 2rem;
   overflow-y: auto;
+  padding-top: 4rem; /* Додатковий відступ зверху */
 }
 
 .title {

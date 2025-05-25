@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./RecoveryPage.module.css";
 import CalendarSidebar from "../CalendarSidebar/CalendarSidebar";
+import Header from "../Header/Header";
 
 const RecoveryPage = () => {
   const [tasks, setTasks] = useState([]);
@@ -29,61 +30,64 @@ const RecoveryPage = () => {
   const completedCount = currentDayTasks.filter((t) => t.completed).length;
 
   return (
-    <div className={styles.container}>
-      <div className={styles.pageContent}>
-        <h1 className={styles.title}>Привіт, Олено!</h1>
-        <p className={styles.subtitle}>
-          Завдання на {selectedDate.toLocaleDateString("uk-UA")}
-        </p>
+    <div>
+      <Header />
+      <div className={styles.container}>
+        <div className={styles.pageContent}>
+          <h1 className={styles.title}>Привіт, Олено!</h1>
+          <p className={styles.subtitle}>
+            Завдання на {selectedDate.toLocaleDateString("uk-UA")}
+          </p>
 
-        {loading ? (
-          <p>Завантаження завдань...</p>
-        ) : currentDayTasks.length === 0 ? (
-          <p>Немає завдань на цей день.</p>
-        ) : (
-          <>
-            <div className={styles.taskGrid}>
-              {currentDayTasks.map((task) => (
-                <div key={task.id} className={styles.taskCard}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={task.completed}
-                      readOnly
-                      className={styles.checkbox}
-                    />
-                    <span className={task.completed ? styles.taskDone : ""}>
-                      {task.title}
-                    </span>
-                  </label>
-                </div>
-              ))}
-            </div>
+          {loading ? (
+            <p>Завантаження завдань...</p>
+          ) : currentDayTasks.length === 0 ? (
+            <p>Немає завдань на цей день.</p>
+          ) : (
+            <>
+              <div className={styles.taskGrid}>
+                {currentDayTasks.map((task) => (
+                  <div key={task.id} className={styles.taskCard}>
+                    <label>
+                      <input
+                        type="checkbox"
+                        checked={task.completed}
+                        readOnly
+                        className={styles.checkbox}
+                      />
+                      <span className={task.completed ? styles.taskDone : ""}>
+                        {task.title}
+                      </span>
+                    </label>
+                  </div>
+                ))}
+              </div>
 
-            <div className={styles.progress}>
-              Прогрес: {completedCount} / {currentDayTasks.length}
-            </div>
+              <div className={styles.progress}>
+                Прогрес: {completedCount} / {currentDayTasks.length}
+              </div>
 
-            <div className={styles.badges}>
-              <span className={styles.badge}>🟡 3 дні поспіль</span>
-              <span className={styles.badge}>🟢 7 днів поспіль</span>
-            </div>
+              <div className={styles.badges}>
+                <span className={styles.badge}>🟡 3 дні поспіль</span>
+                <span className={styles.badge}>🟢 7 днів поспіль</span>
+              </div>
 
-            <button
-              className={styles.programButton}
-              onClick={() => (window.location.href = "/program")}
-            >
-              Перейти до програми
-            </button>
-          </>
-        )}
+              <button
+                className={styles.programButton}
+                onClick={() => (window.location.href = "/program")}
+              >
+                Перейти до програми
+              </button>
+            </>
+          )}
+        </div>
+
+        <CalendarSidebar
+          selectedDate={selectedDate}
+          onSelectDate={setSelectedDate}
+          className={styles.calendarSidebar}
+        />
       </div>
-
-      <CalendarSidebar
-        selectedDate={selectedDate}
-        onSelectDate={setSelectedDate}
-        className={styles.calendarSidebar}
-      />
     </div>
   );
 };
