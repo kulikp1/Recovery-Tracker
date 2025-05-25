@@ -35,6 +35,7 @@ const HomePage = () => {
         toast.error("Невірний пароль");
         return;
       }
+      localStorage.setItem("user", JSON.stringify(user));
 
       toast.success("Успішний вхід");
 
