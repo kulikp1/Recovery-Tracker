@@ -3,7 +3,7 @@ import "./App.css";
 
 import HomePage from "../HomePage/HomePage";
 import SignupPage from "../SignUpPage/SignUp";
-import RecoveryTracker from "../recoveryPage/recoveryPage";
+import RecoveryTracker from "../RecoveryPage/RecoveryPage";
 import PrivateRoute from "../../PrivateRoute";
 
 function App() {
