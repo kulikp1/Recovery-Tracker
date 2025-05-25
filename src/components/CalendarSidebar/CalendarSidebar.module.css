@@ -1,7 +1,7 @@
 .sidebar {
-  width: 340px; /* Було 240px */
+  width: 400px; /* Було 240px */
   background: white;
-  padding: 24px; /* трохи більше внутрішнього простору */
+  padding: 23px; /* трохи більше внутрішнього простору */
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   font-family: sans-serif;
@@ -9,7 +9,7 @@
 
 .header {
   font-weight: bold;
-  font-size: 20px;
+  font-size: 22px;
   text-align: left;
   margin-bottom: 16px;
   color: #333;
@@ -18,14 +18,17 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 6px; /* збільшити трохи відступи */
+  gap: 10px; /* збільшити трохи відступи */
+
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 .cell {
   width: 100%;
   aspect-ratio: 1;
   text-align: center;
-  line-height: 42px; /* більше висоти */
+  line-height: 52px; /* більше висоти */
   border-radius: 10px;
   font-size: 18px; /* більше текст */
   color: #333;

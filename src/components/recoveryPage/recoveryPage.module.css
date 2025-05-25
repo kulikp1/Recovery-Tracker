@@ -6,8 +6,8 @@
   background: linear-gradient(to bottom right, #2a003f, #440055);
   color: white;
   overflow: hidden;
-  padding: 3rem 8rem;
-  gap: 3rem;
+  padding: 3rem 3rem;
+  gap: 10rem;
 }
 
 .pageContent {
