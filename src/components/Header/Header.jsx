@@ -1,9 +1,19 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
-import logo from "../../../assets/logo.png"; // Замінити шлях до лого за потреби
-import { Link } from "react-router-dom";
+import logo from "../../../assets/logo.png";
+import { BarChart2, Settings, LogOut } from "lucide-react";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+
+    navigate("/");
+  };
+
   return (
     <header className={styles.header}>
       <div className={styles.left}>
@@ -12,11 +22,17 @@ const Header = () => {
       </div>
       <nav className={styles.nav}>
         <Link to="/stats" className={styles.navLink}>
-          📊 Статистика
+          <BarChart2 className={styles.icon} />
+          <span>Статистика</span>
         </Link>
         <Link to="/settings" className={styles.navLink}>
-          ⚙️ Налаштування
+          <Settings className={styles.icon} />
+          <span>Налаштування</span>
         </Link>
+        <button onClick={handleLogout} className={styles.navLink}>
+          <LogOut className={styles.icon} />
+          <span>LogOut</span>
+        </button>
       </nav>
     </header>
   );

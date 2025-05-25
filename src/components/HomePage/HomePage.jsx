@@ -37,8 +37,6 @@ const HomePage = () => {
       }
 
       toast.success("Успішний вхід");
-      // Зберегти користувача, якщо треба (наприклад, в localStorage)
-      // localStorage.setItem("user", JSON.stringify(user));
 
       navigate("/recoveryTracker");
     } catch (error) {
