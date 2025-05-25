@@ -39,7 +39,6 @@ const SignupPage = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
-
     const error = validateField(name, value);
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
@@ -48,6 +47,34 @@ const SignupPage = () => {
     const { name, value } = e.target;
     const error = validateField(name, value);
     setErrors((prev) => ({ ...prev, [name]: error }));
+  };
+
+  const assignTasksToUser = async (userId, startDate) => {
+    const taskRes = await fetch(
+      "https://68321216c3f2222a8cb15cdb.mockapi.io/tasks"
+    );
+    const tasks = await taskRes.json();
+
+    const formattedTasks = tasks.map((task, index) => {
+      const date = new Date(startDate);
+      date.setDate(date.getDate() + Math.floor(index / 3)); // по 3 задачі на день
+
+      return {
+        userId,
+        title: task.title,
+        description: task.description,
+        date: date.toISOString().split("T")[0], // формат YYYY-MM-DD
+        completed: false,
+      };
+    });
+
+    for (const task of formattedTasks) {
+      await fetch("https://683264f0c3f2222a8cb22fc0.mockapi.io/taskforusers", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(task),
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -70,36 +97,45 @@ const SignupPage = () => {
         "https://68321216c3f2222a8cb15cdb.mockapi.io/users"
       );
       let users = await res.json();
-
-      if (!Array.isArray(users)) {
-        users = [];
-      }
+      if (!Array.isArray(users)) users = [];
 
       const existingUser = users.find(
-        (u) => u.email && u.email.toLowerCase() === form.email.toLowerCase()
+        (u) => u.email?.toLowerCase() === form.email.toLowerCase()
       );
-
       if (existingUser) {
         toast.error("Користувач з таким email вже існує");
         return;
       }
 
       const hashedPassword = await bcrypt.hash(form.password, 10);
+      const startDate = new Date().toISOString().split("T")[0];
 
-      await fetch("https://68321216c3f2222a8cb15cdb.mockapi.io/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          password: hashedPassword,
-        }),
-      });
+      const createUserRes = await fetch(
+        "https://68321216c3f2222a8cb15cdb.mockapi.io/users",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            password: hashedPassword,
+            createdAt: startDate,
+          }),
+        }
+      );
+
+      const newUser = await createUserRes.json();
 
       localStorage.setItem(
         "user",
-        JSON.stringify({ name: form.name, email: form.email })
+        JSON.stringify({
+          id: newUser.id,
+          name: newUser.name,
+          email: newUser.email,
+        })
       );
+
+      await assignTasksToUser(newUser.id, startDate);
 
       toast.success("Реєстрація успішна!");
       navigate("/recoveryTracker");
@@ -112,7 +148,7 @@ const SignupPage = () => {
   return (
     <div className={styles.container}>
       <Toaster position="top-right" />
-      <div className={styles.backgroundShapes}>{/* Shapes... */}</div>
+      <div className={styles.backgroundShapes}></div>
 
       <form onSubmit={handleSubmit} noValidate className={styles.card}>
         <img src={logo} alt="Logo" className={styles.logoImage} />

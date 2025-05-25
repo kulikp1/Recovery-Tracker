@@ -1,94 +1,21 @@
 .container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100vh;
   font-family: "Poppins", sans-serif;
   background: linear-gradient(to bottom right, #2a003f, #440055);
   color: white;
   overflow: hidden;
-  position: relative;
   padding: 4rem 8rem;
-}
-
-.shapes .shape,
-.shapes .line,
-.shapes .wavy {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.08;
-  mix-blend-mode: overlay;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.shape1 {
-  top: 20%;
-  left: 10%;
-  width: 100px;
-  height: 100px;
-}
-.shape2 {
-  bottom: 15%;
-  right: 15%;
-  width: 60px;
-  height: 60px;
-}
-.shape3 {
-  top: 40%;
-  left: 50%;
-  width: 150px;
-  height: 150px;
-}
-
-.line1 {
-  width: 2px;
-  height: 150px;
-  top: 10%;
-  left: 60%;
-  transform: rotate(20deg);
-  opacity: 0.07;
-  background: white;
-  border-radius: 1px;
-}
-.line2 {
-  width: 2px;
-  height: 150px;
-  bottom: 5%;
-  left: 30%;
-  transform: rotate(-45deg);
-  opacity: 0.07;
-  background: white;
-  border-radius: 1px;
-}
-
-.wavy1 {
-  width: 60px;
-  height: 60px;
-  border: 2px solid white;
-  border-radius: 50% 50% 0 0;
-  top: 60%;
-  right: 20%;
-  transform: rotate(45deg);
-  opacity: 0.06;
-}
-.wavy2 {
-  width: 60px;
-  height: 60px;
-  border: 2px solid white;
-  border-radius: 50% 50% 0 0;
-  bottom: 30%;
-  left: 15%;
-  transform: rotate(-30deg);
-  opacity: 0.06;
+  gap: 3rem;
 }
 
 .pageContent {
-  position: relative;
-  z-index: 1;
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  overflow-y: auto;
 }
 
 .title {
@@ -113,11 +40,6 @@
   border-radius: 16px;
   padding: 1.2rem;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  transition: 0.3s ease;
-}
-
-.taskCard:hover {
-  transform: translateY(-3px);
 }
 
 .checkbox {
@@ -166,27 +88,30 @@
   opacity: 0.9;
 }
 
-.daySwitcher {
+.calendarSidebar {
+  width: 280px;
+  max-height: 420px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  color: #fff;
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: flex-start;
 }
 
-.dayButton {
-  background-color: #e0e0e0;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s;
-}
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 2rem;
+  }
 
-.dayButton:hover {
-  background-color: #ccc;
-}
-
-.active {
-  background-color: #4caf50;
-  color: white;
+  .calendarSidebar {
+    width: 100%;
+    margin-top: 2rem;
+  }
 }

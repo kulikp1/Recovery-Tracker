@@ -1,0 +1,61 @@
+.sidebar {
+  width: 340px; /* Було 240px */
+  background: white;
+  padding: 24px; /* трохи більше внутрішнього простору */
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  font-family: sans-serif;
+}
+
+.header {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: left;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px; /* збільшити трохи відступи */
+}
+
+.cell {
+  width: 100%;
+  aspect-ratio: 1;
+  text-align: center;
+  line-height: 42px; /* більше висоти */
+  border-radius: 10px;
+  font-size: 18px; /* більше текст */
+  color: #333;
+  background: #f9f9f9;
+  transition: background 0.2s ease;
+}
+
+.cell:hover {
+  background: #eee;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #e53935;
+  color: white;
+  font-weight: bold;
+}
+
+.empty {
+  background: transparent;
+  pointer-events: none;
+}
+
+.header {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.monthLabel {
+  font-size: 1.1rem;
+  text-transform: capitalize;
+  color: #222;
+}
