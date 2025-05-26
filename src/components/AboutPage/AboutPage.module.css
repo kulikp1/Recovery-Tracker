@@ -7,6 +7,8 @@
   position: relative;
   color: white;
   overflow: hidden;
+  align-items: flex-start; /* додано */
+  padding-top: 120px; /* додано */
 }
 
 /* === Декоративні елементи фону === */
@@ -86,7 +88,7 @@
 /* === Ліва секція: текст і логотип === */
 .left {
   flex: 1;
-  padding: 2rem 5rem 2rem 12rem;
+  padding: 0px 5rem 2rem 12rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -109,7 +111,7 @@
 }
 
 .title {
-  font-size: 87px;
+  font-size: 60px;
   font-weight: 800;
   margin-bottom: 1rem;
   position: relative;
@@ -129,7 +131,7 @@
 .description {
   font-size: 1.1rem;
   line-height: 1.2;
-  max-width: 400px;
+  max-width: 600px;
   margin-bottom: 2rem;
   color: #d1c4e9;
 }
@@ -155,6 +157,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  padding-top: 0px;
 }
 
 .card {
@@ -176,4 +179,27 @@
   font-weight: 700;
   margin-bottom: 2rem;
   text-align: center;
+}
+
+.features {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-size: 1rem;
+  color: #e0d7ff;
+}
+
+.features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  line-height: 1.5;
+}
+
+.icon {
+  flex-shrink: 0;
+  color: #ff7e5f;
+  margin-top: 4px;
 }
