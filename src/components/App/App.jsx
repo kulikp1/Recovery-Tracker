@@ -5,6 +5,7 @@ import HomePage from "../HomePage/HomePage";
 import SignupPage from "../SignUpPage/SignUp";
 import RecoveryTracker from "../RecoveryPage/RecoveryPage";
 import PrivateRoute from "../../PrivateRoute";
+import AboutPage from "../AboutPage/AboutPage";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           </PrivateRoute>
         }
       />
-      <Route path="/about" element={<SignupPage />} />
+      <Route path="/about" element={<AboutPage />} />
     </Routes>
   );
 }
