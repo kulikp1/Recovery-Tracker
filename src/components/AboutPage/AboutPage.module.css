@@ -1,0 +1,179 @@
+/* === Основний контейнер сторінки === */
+.container {
+  display: flex;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom right, #2a003f, #440055);
+  position: relative;
+  color: white;
+  overflow: hidden;
+}
+
+/* === Декоративні елементи фону === */
+.shape {
+  position: absolute;
+  opacity: 0.08;
+  background: white;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.shape1 {
+  top: 20%;
+  left: 10%;
+  width: 100px;
+  height: 100px;
+}
+
+.shape2 {
+  bottom: 15%;
+  right: 15%;
+  width: 60px;
+  height: 60px;
+}
+
+.shape3 {
+  top: 40%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.line {
+  width: 2px;
+  height: 150px;
+  background: white;
+  border-radius: 1px;
+  opacity: 0.07;
+  position: absolute;
+  transform: rotate(20deg);
+}
+
+.line1 {
+  top: 10%;
+  left: 60%;
+}
+
+.line2 {
+  bottom: 5%;
+  left: 30%;
+  transform: rotate(-45deg);
+}
+
+.wavy {
+  width: 60px;
+  height: 60px;
+  border: 2px solid white;
+  border-radius: 50% 50% 0 0;
+  opacity: 0.06;
+  position: absolute;
+  transform: rotate(45deg);
+}
+
+.wavy1 {
+  top: 60%;
+  right: 20%;
+}
+
+.wavy2 {
+  bottom: 30%;
+  left: 15%;
+  transform: rotate(-30deg);
+}
+
+/* === Ліва секція: текст і логотип === */
+.left {
+  flex: 1;
+  padding: 2rem 5rem 2rem 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background: transparent;
+}
+
+.logoImage {
+  height: 80px;
+  width: auto;
+  margin-bottom: 2rem;
+  align-self: flex-start;
+  opacity: 0.95;
+  transition: transform 0.3s ease;
+  border-radius: 50px;
+}
+
+.logoImage:hover {
+  transform: scale(1.05);
+}
+
+.title {
+  font-size: 87px;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ff7e5f;
+  margin-top: 1rem;
+  border-radius: 2px;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.2;
+  max-width: 400px;
+  margin-bottom: 2rem;
+  color: #d1c4e9;
+}
+
+.learnMore {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  color: white;
+  padding: 0.8rem 1.6rem;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 30px;
+  width: fit-content;
+  transition: 0.3s ease;
+}
+
+.learnMore:hover {
+  opacity: 0.9;
+}
+
+/* === Права секція: інформаційна картка === */
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.079);
+  backdrop-filter: blur(20px);
+  padding: 4rem 3rem;
+  width: 420px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  justify-content: center;
+  margin-right: 60px;
+}
+
+.signin {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
