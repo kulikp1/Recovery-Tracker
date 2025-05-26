@@ -28,9 +28,9 @@
   width: 100%;
   aspect-ratio: 1;
   text-align: center;
-  line-height: 52px; /* більше висоти */
+  line-height: 52px;
   border-radius: 10px;
-  font-size: 18px; /* більше текст */
+  font-size: 18px;
   color: #333;
   background: #f9f9f9;
   transition: background 0.2s ease;
