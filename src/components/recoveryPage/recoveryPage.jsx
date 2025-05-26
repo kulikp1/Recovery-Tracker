@@ -73,17 +73,22 @@ const RecoveryPage = () => {
               <div className={styles.taskGrid}>
                 {currentDayTasks.map((task) => (
                   <div key={task.id} className={styles.taskCard}>
-                    <label>
+                    <div className={styles.checkboxContainer}>
                       <input
                         type="checkbox"
                         checked={task.completed}
                         readOnly
-                        className={styles.checkbox}
+                        className={styles.checkboxInput}
                       />
-                      <span className={task.completed ? styles.taskDone : ""}>
-                        {task.title}
-                      </span>
-                    </label>
+                      <span className={styles.customCheckbox}></span>
+                    </div>
+                    <span
+                      className={`${styles.taskTitle} ${
+                        task.completed ? styles.taskDone : ""
+                      }`}
+                    >
+                      {task.title}
+                    </span>
                   </div>
                 ))}
               </div>
