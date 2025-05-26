@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import logo from "../../../assets/logo.png";
-import { BarChart2, Info, LogOut } from "lucide-react"; // заміна Settings на Info
+import { Home, BarChart2, Info, LogOut } from "lucide-react"; // додано Home
 
 const Header = () => {
   const navigate = useNavigate();
@@ -10,7 +10,6 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-
     navigate("/");
   };
 
@@ -21,6 +20,10 @@ const Header = () => {
         <span className={styles.appName}>Recovery</span>
       </div>
       <nav className={styles.nav}>
+        <Link to="/recoveryTracker" className={styles.navLink}>
+          <Home className={styles.icon} />
+          <span>Головна</span>
+        </Link>
         <Link to="/stats" className={styles.navLink}>
           <BarChart2 className={styles.icon} />
           <span>Статистика</span>
