@@ -55,9 +55,11 @@ const SignupPage = () => {
   };
 
   const assignTasksToUser = async (userId, startDate) => {
-    const taskRes = await fetch(
-      "https://68321216c3f2222a8cb15cdb.mockapi.io/tasks"
-    );
+    const taskUrl = form.isMilitary
+      ? "https://683264f0c3f2222a8cb22fc0.mockapi.io/militaryTask"
+      : "https://68321216c3f2222a8cb15cdb.mockapi.io/tasks";
+
+    const taskRes = await fetch(taskUrl);
     const tasks = await taskRes.json();
 
     const formattedTasks = tasks.map((task, index) => {
