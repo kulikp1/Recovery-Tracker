@@ -19,6 +19,7 @@ function App() {
           </PrivateRoute>
         }
       />
+      <Route path="/about" element={<SignupPage />} />
     </Routes>
   );
 }
