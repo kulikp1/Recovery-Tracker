@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import logo from "../../../assets/logo.png";
-import { BarChart2, Settings, LogOut } from "lucide-react";
+import { BarChart2, Info, LogOut } from "lucide-react"; // заміна Settings на Info
 
 const Header = () => {
   const navigate = useNavigate();
@@ -25,9 +25,9 @@ const Header = () => {
           <BarChart2 className={styles.icon} />
           <span>Статистика</span>
         </Link>
-        <Link to="/settings" className={styles.navLink}>
-          <Settings className={styles.icon} />
-          <span>Налаштування</span>
+        <Link to="/about" className={styles.navLink}>
+          <Info className={styles.icon} />
+          <span>Про програму</span>
         </Link>
         <button onClick={handleLogout} className={styles.navLink}>
           <LogOut className={styles.icon} />
