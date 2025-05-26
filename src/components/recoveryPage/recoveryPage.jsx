@@ -8,7 +8,6 @@ const RecoveryPage = () => {
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // 🟡 Витягуємо user з localStorage, якщо є
   const user = React.useMemo(() => {
     try {
       const storedUser = localStorage.getItem("user");
@@ -19,7 +18,6 @@ const RecoveryPage = () => {
   }, []);
 
   const currentUserId = user?.id || null;
-
   const hasFetched = useRef(false);
 
   useEffect(() => {
@@ -43,7 +41,6 @@ const RecoveryPage = () => {
     date1.getMonth() === date2.getMonth() &&
     date1.getDate() === date2.getDate();
 
-  // Якщо currentUserId немає, то масив пустий (щоб не рендерити чужі дані)
   const currentDayTasks = currentUserId
     ? tasks.filter(
         (task) =>
@@ -53,6 +50,32 @@ const RecoveryPage = () => {
     : [];
 
   const completedCount = currentDayTasks.filter((t) => t.completed).length;
+
+  const handleToggleComplete = async (taskId) => {
+    const taskToUpdate = tasks.find((task) => task.id === taskId);
+    if (!taskToUpdate) return;
+
+    const updatedTask = { ...taskToUpdate, completed: !taskToUpdate.completed };
+
+    try {
+      await fetch(
+        `https://683264f0c3f2222a8cb22fc0.mockapi.io/taskforusers/${taskId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedTask),
+        }
+      );
+
+      setTasks((prevTasks) =>
+        prevTasks.map((task) => (task.id === taskId ? updatedTask : task))
+      );
+    } catch (error) {
+      console.error("Failed to update task:", error);
+    }
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -73,33 +96,27 @@ const RecoveryPage = () => {
               <div className={styles.taskGrid}>
                 {currentDayTasks.map((task) => (
                   <div key={task.id} className={styles.taskCard}>
-                    <div className={styles.checkboxContainer}>
+                    <label className={styles.customCheckboxWrapper}>
                       <input
                         type="checkbox"
                         checked={task.completed}
-                        readOnly
-                        className={styles.checkboxInput}
+                        onChange={() => handleToggleComplete(task.id)}
                       />
                       <span className={styles.customCheckbox}></span>
-                    </div>
-                    <span
-                      className={`${styles.taskTitle} ${
-                        task.completed ? styles.taskDone : ""
-                      }`}
-                    >
-                      {task.title}
-                    </span>
+                      <span
+                        className={
+                          task.completed ? styles.taskDone : styles.taskTitle
+                        }
+                      >
+                        {task.title}
+                      </span>
+                    </label>
                   </div>
                 ))}
               </div>
 
               <div className={styles.progress}>
                 Прогрес: {completedCount} / {currentDayTasks.length}
-              </div>
-
-              <div className={styles.badges}>
-                <span className={styles.badge}>🟡 3 дні поспіль</span>
-                <span className={styles.badge}>🟢 7 днів поспіль</span>
               </div>
 
               <button
