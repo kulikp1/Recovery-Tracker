@@ -121,9 +121,9 @@ const RecoveryPage = () => {
 
               <button
                 className={styles.programButton}
-                onClick={() => (window.location.href = "/program")}
+                onClick={() => (window.location.href = "/about")}
               >
-                Перейти до програми
+                Про програму
               </button>
             </>
           )}
