@@ -1,7 +1,7 @@
 .sidebar {
   width: 400px; /* Було 240px */
   background: white;
-  padding: 23px; /* трохи більше внутрішнього простору */
+  padding: 23px;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   font-family: sans-serif;
