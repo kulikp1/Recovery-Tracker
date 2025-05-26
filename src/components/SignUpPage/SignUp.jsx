@@ -12,6 +12,7 @@ const SignupPage = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    isMilitary: false,
   });
 
   const [errors, setErrors] = useState({});
@@ -37,10 +38,14 @@ const SignupPage = () => {
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-    const error = validateField(name, value);
-    setErrors((prev) => ({ ...prev, [name]: error }));
+    const { name, value, type, checked } = e.target;
+    const val = type === "checkbox" ? checked : value;
+
+    setForm((prev) => ({ ...prev, [name]: val }));
+    if (type !== "checkbox") {
+      const error = validateField(name, val);
+      setErrors((prev) => ({ ...prev, [name]: error }));
+    }
   };
 
   const handleBlur = (e) => {
@@ -57,13 +62,13 @@ const SignupPage = () => {
 
     const formattedTasks = tasks.map((task, index) => {
       const date = new Date(startDate);
-      date.setDate(date.getDate() + Math.floor(index / 3)); // по 3 задачі на день
+      date.setDate(date.getDate() + Math.floor(index / 3));
 
       return {
         userId,
         title: task.title,
         description: task.description,
-        date: date.toISOString().split("T")[0], // формат YYYY-MM-DD
+        date: date.toISOString().split("T")[0],
         completed: false,
       };
     });
@@ -82,8 +87,10 @@ const SignupPage = () => {
 
     const newErrors = {};
     for (let field in form) {
-      const error = validateField(field, form[field]);
-      if (error) newErrors[field] = error;
+      if (field !== "isMilitary") {
+        const error = validateField(field, form[field]);
+        if (error) newErrors[field] = error;
+      }
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -120,6 +127,7 @@ const SignupPage = () => {
             email: form.email,
             password: hashedPassword,
             createdAt: startDate,
+            isMilitary: form.isMilitary,
           }),
         }
       );
@@ -215,6 +223,18 @@ const SignupPage = () => {
         {errors.confirmPassword && (
           <p className={styles.error}>{errors.confirmPassword}</p>
         )}
+
+        {/* 🟩 Чекбокс "Я військовий" */}
+        <label className={styles.checkboxLabel}>
+          <input
+            type="checkbox"
+            name="isMilitary"
+            checked={form.isMilitary}
+            onChange={handleChange}
+            className={styles.checkbox}
+          />
+          Я військовий
+        </label>
 
         <button type="submit" className={styles.submit}>
           Зареєструватися
