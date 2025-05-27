@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom right, #2a003f, #440055);
+  position: relative;
+  color: white;
+  overflow: hidden;
+  align-items: flex-start;
+  padding-top: 120px;
+}
+
+.shape {
+  position: absolute;
+  opacity: 0.08;
+  background: white;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.shape1 {
+  top: 20%;
+  left: 10%;
+  width: 100px;
+  height: 100px;
+}
+
+.shape2 {
+  bottom: 15%;
+  right: 15%;
+  width: 60px;
+  height: 60px;
+}
+
+.left {
+  flex: 1;
+  padding: 0px 5rem 2rem 12rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: transparent;
+}
+
+.title {
+  font-size: 60px;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ff7e5f;
+  margin-top: 1rem;
+  border-radius: 2px;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  max-width: 600px;
+  margin-bottom: 2rem;
+  color: #d1c4e9;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 5rem;
+}
+
+.chartCard {
+  background: rgba(255, 255, 255, 0.079);
+  backdrop-filter: blur(20px);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  width: 500px;
+  max-width: 90%;
+}
