@@ -8,6 +8,7 @@ const RecoveryPage = () => {
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
+  // Отримання користувача з localStorage
   const user = React.useMemo(() => {
     try {
       const storedUser = localStorage.getItem("user");
@@ -82,7 +83,9 @@ const RecoveryPage = () => {
       <Header />
       <div className={styles.container}>
         <div className={styles.pageContent}>
-          <h1 className={styles.title}>Привіт, Олено!</h1>
+          <h1 className={styles.title}>
+            Привіт, {user?.email?.split("@")[0] || "користувачу"}!
+          </h1>
           <p className={styles.subtitle}>
             Завдання на {selectedDate.toLocaleDateString("uk-UA")}
           </p>
