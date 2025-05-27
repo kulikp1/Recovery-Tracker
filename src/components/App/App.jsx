@@ -7,6 +7,7 @@ import RecoveryTracker from "../RecoveryPage/RecoveryPage";
 import PrivateRoute from "../../PrivateRoute";
 import AboutPage from "../AboutPage/AboutPage";
 import AnalyticsPage from "../AnalyticsPage/AnalyticsPage";
+import Rewards from "../Rewards/Rewards";
 
 function App() {
   return (
@@ -27,6 +28,14 @@ function App() {
         element={
           <PrivateRoute>
             <AnalyticsPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/rewards"
+        element={
+          <PrivateRoute>
+            <Rewards />
           </PrivateRoute>
         }
       />
