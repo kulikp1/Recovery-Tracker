@@ -11,8 +11,25 @@ import {
 } from "recharts";
 import Header from "../Header/Header";
 
+const months = [
+  "Січень",
+  "Лютий",
+  "Березень",
+  "Квітень",
+  "Травень",
+  "Червень",
+  "Липень",
+  "Серпень",
+  "Вересень",
+  "Жовтень",
+  "Листопад",
+  "Грудень",
+];
+
 const AnalyticsPage = () => {
-  const [data, setData] = useState([]);
+  const [allData, setAllData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -42,15 +59,28 @@ const AnalyticsPage = () => {
           }
         });
 
-        const result = Object.values(dailyStats).map((d) => ({
-          date: d.date,
-          performance: Math.round((d.completed / d.total) * 100),
-        }));
+        const result = Object.values(dailyStats).map((d) => {
+          const dt = new Date(d.date);
+          return {
+            date: dt.toLocaleDateString("uk-UA", {
+              day: "2-digit",
+              month: "2-digit",
+            }), // без року
+            rawDate: dt,
+            month: dt.getMonth(),
+            performance: Math.round((d.completed / d.total) * 100),
+          };
+        });
 
-        result.sort((a, b) => new Date(a.date) - new Date(b.date));
-        setData(result);
+        result.sort((a, b) => a.rawDate - b.rawDate);
+        setAllData(result);
       });
   }, []);
+
+  useEffect(() => {
+    const filtered = allData.filter((item) => item.month === selectedMonth);
+    setFilteredData(filtered);
+  }, [allData, selectedMonth]);
 
   return (
     <div>
@@ -60,36 +90,51 @@ const AnalyticsPage = () => {
         <div className={`${styles.shape} ${styles.shape2}`} />
 
         <div className={styles.left}>
-          <h1 className={styles.title}>Слідкуй за продуктивністю</h1>
+          <h1 className={styles.title}>Прогрес користувача</h1>
           <p className={styles.description}>
-            Графік продуктивності на основі виконаних завдань.
+            Оберіть місяць, щоб переглянути продуктивність по днях.
           </p>
+          <select
+            value={selectedMonth}
+            onChange={(e) => setSelectedMonth(Number(e.target.value))}
+            className={styles.monthSelector}
+          >
+            {months.map((month, index) => (
+              <option key={month} value={index}>
+                {month}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className={styles.right}>
           <div className={styles.chartCard}>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={data}>
-                <CartesianGrid stroke="#ffffff20" />
-                <XAxis dataKey="date" stroke="#fff" />
-                <YAxis
-                  stroke="#fff"
-                  domain={[0, 100]}
-                  tickFormatter={(v) => `${v}%`}
-                />
-                <Tooltip
-                  formatter={(value) => `${value}%`}
-                  contentStyle={{ backgroundColor: "#333", border: "none" }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="performance"
-                  stroke="#a259ff"
-                  strokeWidth={3}
-                  dot={{ r: 5 }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
+            {filteredData.length > 0 ? (
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={filteredData}>
+                  <CartesianGrid stroke="#ffffff20" />
+                  <XAxis dataKey="date" stroke="#fff" />
+                  <YAxis
+                    stroke="#fff"
+                    domain={[0, 100]}
+                    tickFormatter={(v) => `${v}%`}
+                  />
+                  <Tooltip
+                    formatter={(value) => `${value}%`}
+                    contentStyle={{ backgroundColor: "#333", border: "none" }}
+                  />
+                  <Line
+                    type="monotone"
+                    dataKey="performance"
+                    stroke="#a259ff" // фіолетовий
+                    strokeWidth={3}
+                    dot={{ r: 5 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            ) : (
+              <p className={styles.noData}>Немає даних для цього місяця.</p>
+            )}
           </div>
         </div>
       </div>
