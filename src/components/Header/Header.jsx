@@ -28,10 +28,7 @@ const Header = () => {
           <BarChart2 className={styles.icon} />
           <span>Статистика</span>
         </Link>
-        {/* <Link to="/about" className={styles.navLink}>
-          <Info className={styles.icon} />
-          <span>Про програму</span>
-        </Link> */}
+
         <button onClick={handleLogout} className={styles.navLink}>
           <LogOut className={styles.icon} />
           <span>LogOut</span>
