@@ -69,7 +69,7 @@ const HomePage = () => {
           Віднови емоційний баланс, позбудься вигоряння та поверни контроль над
           життям.
         </p>
-        <Link to="/program" className={styles.learnMore}>
+        <Link to="/about" className={styles.learnMore}>
           Дізнатися більше
         </Link>
       </div>
