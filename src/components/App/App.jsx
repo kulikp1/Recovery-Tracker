@@ -6,6 +6,7 @@ import SignupPage from "../SignUpPage/SignUp";
 import RecoveryTracker from "../RecoveryPage/RecoveryPage";
 import PrivateRoute from "../../PrivateRoute";
 import AboutPage from "../AboutPage/AboutPage";
+import AnalyticsPage from "../AnalyticsPage/AnalyticsPage";
 
 function App() {
   return (
@@ -21,6 +22,14 @@ function App() {
         }
       />
       <Route path="/about" element={<AboutPage />} />
+      <Route
+        path="/stats"
+        element={
+          <PrivateRoute>
+            <AnalyticsPage />
+          </PrivateRoute>
+        }
+      />
     </Routes>
   );
 }
