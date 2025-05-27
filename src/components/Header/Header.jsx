@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.css";
 import logo from "../../../assets/logo.png";
-import { Home, BarChart2, Info, LogOut } from "lucide-react"; // додано Home
+import { Home, BarChart2, Info, LogOut, Gift } from "lucide-react"; // імпорт Gift
 
 const Header = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Header = () => {
           <span>Статистика</span>
         </Link>
         <Link to="/rewards" className={styles.navLink}>
-          <BarChart2 className={styles.icon} />
+          <Gift className={styles.icon} /> {/* Іконка винагород */}
           <span>Винагороди</span>
         </Link>
 

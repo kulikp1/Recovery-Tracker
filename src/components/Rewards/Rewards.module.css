@@ -109,6 +109,7 @@
   font-size: 1.1rem;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  text-align: left;
 }
 
 .rewardItem:hover {
@@ -128,4 +129,23 @@
   color: #c0b3da;
   font-size: 1.1rem;
   padding: 2rem 0 0;
+}
+
+.rewardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rewardIcon {
+  color: #ffa726;
+  width: 24px;
+  height: 24px;
+}
+
+.rewardDescription {
+  font-size: 0.9rem;
+  color: #c3c3c3;
+  margin-top: 4px;
+  text-align: left;
 }

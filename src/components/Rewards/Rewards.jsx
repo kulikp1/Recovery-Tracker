@@ -1,15 +1,59 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Rewards.module.css";
 import Header from "../Header/Header";
+import {
+  Medal,
+  Rocket,
+  Activity,
+  Target,
+  Trophy,
+  ShieldCheck,
+  Crown,
+} from "lucide-react";
 
 const rewards = [
-  { days: 1, title: "🔥 Початок є!", emoji: "🏅" },
-  { days: 3, title: "🚀 Розгін!", emoji: "🥉" },
-  { days: 5, title: "💪 Тримай темп!", emoji: "🥈" },
-  { days: 7, title: "🎯 Ціль близько!", emoji: "🥇" },
-  { days: 14, title: "🏆 Наполегливість!", emoji: "🏆" },
-  { days: 21, title: "⚡ Незламність!", emoji: "🎖️" },
-  { days: 30, title: "👑 Легенда!", emoji: "👑" },
+  {
+    days: 1,
+    title: "Початок є!",
+    icon: Medal,
+    description: "Перший крок зроблено! Твоя подорож тільки починається.",
+  },
+  {
+    days: 3,
+    title: "Розгін!",
+    icon: Rocket,
+    description: "Ти набираєш обертів! Продовжуй у тому ж дусі.",
+  },
+  {
+    days: 5,
+    title: "Тримай темп!",
+    icon: Activity,
+    description: "Ти показуєш сталеву витримку. Так тримати!",
+  },
+  {
+    days: 7,
+    title: "Ціль близько!",
+    icon: Target,
+    description: "Цілий тиждень наполегливості – чудовий результат!",
+  },
+  {
+    days: 14,
+    title: "Наполегливість!",
+    icon: Trophy,
+    description: "Два тижні фокусу! Ти справжній приклад послідовності.",
+  },
+  {
+    days: 21,
+    title: "⚡Незламність!",
+    icon: ShieldCheck,
+    description: "Ти здолав 21 день! Це вже звичка!",
+  },
+  {
+    days: 30,
+    title: "Легенда!",
+    icon: Crown,
+    description: "Цілий місяць послідовності — ти легенда Recovery!",
+  },
 ];
 
 const RewardPage = () => {
@@ -66,15 +110,19 @@ const RewardPage = () => {
 
         <div className={styles.right}>
           <div className={styles.rewardsContainer}>
-            <h2 className={styles.title}>Досягнення</h2>
             {earnedRewards.length > 0 ? (
               <ul className={styles.rewardsList}>
                 {earnedRewards.map((reward) => (
                   <li key={reward.days} className={styles.rewardItem}>
-                    <span className={styles.emoji}>{reward.emoji}</span>
-                    <span className={styles.label}>
-                      <strong>{reward.days} днів:</strong> {reward.title}
-                    </span>
+                    <div className={styles.rewardHeader}>
+                      <reward.icon className={styles.rewardIcon} />
+                      <span className={styles.label}>
+                        <strong>{reward.days} днів:</strong> {reward.title}
+                      </span>
+                    </div>
+                    <p className={styles.rewardDescription}>
+                      {reward.description}
+                    </p>
                   </li>
                 ))}
               </ul>
