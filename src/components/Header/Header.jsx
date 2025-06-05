@@ -29,7 +29,7 @@ const Header = () => {
           <span>Статистика</span>
         </Link>
         <Link to="/rewards" className={styles.navLink}>
-          <Gift className={styles.icon} /> {/* Іконка винагород */}
+          <Gift className={styles.icon} />
           <span>Винагороди</span>
         </Link>
 
