@@ -1,0 +1,280 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
+
+.container {
+  display: flex;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom right, #2a003f, #440055);
+  position: relative;
+  color: white;
+  overflow: hidden;
+}
+
+.left,
+.right {
+  flex: 1;
+  padding: 2rem 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  background: transparent;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.079);
+  backdrop-filter: blur(20px);
+  padding: 2.5rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+}
+
+.title {
+  font-size: 64px;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #ff7e5f;
+  margin-top: 1rem;
+  border-radius: 2px;
+}
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  color: #d1c4e9;
+  margin-bottom: 2rem;
+}
+
+.input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.2rem;
+  color: white;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.input {
+  width: 100%;
+}
+
+.input::placeholder {
+  color: #ccc;
+}
+
+.submit {
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  padding: 0.8rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  margin-top: 20px;
+}
+
+.submit:hover {
+  opacity: 0.9;
+}
+
+.taskList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.taskItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.7rem;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.iconBtn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+.shape,
+.line,
+.wavy {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.06;
+  z-index: 0;
+}
+.shape {
+  background: white;
+  border-radius: 50%;
+}
+.line {
+  width: 2px;
+  height: 150px;
+  background: white;
+}
+.wavy {
+  width: 60px;
+  height: 60px;
+  border: 2px solid white;
+  border-radius: 50% 50% 0 0;
+}
+
+/* Позиції */
+.shape1 {
+  top: 20%;
+  left: 10%;
+  width: 100px;
+  height: 100px;
+}
+.shape2 {
+  bottom: 15%;
+  right: 15%;
+  width: 60px;
+  height: 60px;
+}
+.shape3 {
+  top: 40%;
+  left: 50%;
+  width: 150px;
+  height: 150px;
+}
+
+.line1 {
+  top: 10%;
+  left: 60%;
+  transform: rotate(20deg);
+}
+.line2 {
+  bottom: 5%;
+  left: 30%;
+  transform: rotate(-45deg);
+}
+
+.wavy1 {
+  top: 60%;
+  right: 20%;
+  transform: rotate(45deg);
+}
+.wavy2 {
+  bottom: 30%;
+  left: 15%;
+  transform: rotate(-30deg);
+}
+
+.signin {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.taskList {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 10px;
+  margin-right: -10px;
+  scroll-behavior: smooth;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  font-family: "Poppins", sans-serif;
+}
+
+.modal {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  width: 350px;
+  max-width: 90vw;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+  color: white;
+  text-align: center;
+}
+
+.modal h3 {
+  font-weight: 800;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.modal p {
+  font-weight: 400;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #ddd;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.deleteBtn {
+  flex: 1;
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 0.8rem 0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.deleteBtn:hover {
+  opacity: 0.9;
+}
+
+.cancelBtn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-weight: 600;
+  padding: 0.8rem 0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancelBtn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
