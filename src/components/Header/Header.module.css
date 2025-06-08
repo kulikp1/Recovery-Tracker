@@ -85,3 +85,94 @@
   stroke-width: 2;
   color: inherit;
 }
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  font-family: "Poppins", sans-serif;
+}
+
+.modal {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  width: 350px;
+  max-width: 90vw;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+  color: white;
+  text-align: center;
+}
+
+.modal h3 {
+  font-weight: 800;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.input {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.deleteBtn {
+  flex: 1;
+  background: linear-gradient(to right, #ff416c, #ff4b2b);
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 0.8rem 0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.deleteBtn:hover {
+  opacity: 0.9;
+}
+
+.cancelBtn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-weight: 600;
+  padding: 0.8rem 0;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancelBtn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.editInput {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  box-sizing: border-box;
+}

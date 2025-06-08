@@ -8,14 +8,31 @@ const RecoveryPage = () => {
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // Отримання користувача з localStorage
-  const user = React.useMemo(() => {
+  const [user, setUser] = useState(() => {
     try {
       const storedUser = localStorage.getItem("user");
       return storedUser ? JSON.parse(storedUser) : null;
     } catch {
       return null;
     }
+  });
+
+  useEffect(() => {
+    const updateUser = () => {
+      try {
+        const storedUser = localStorage.getItem("user");
+        setUser(storedUser ? JSON.parse(storedUser) : null);
+      } catch {
+        setUser(null);
+      }
+    };
+
+    // Слухаємо кастомну подію "userUpdated" після редагування імені
+    window.addEventListener("userUpdated", updateUser);
+
+    return () => {
+      window.removeEventListener("userUpdated", updateUser);
+    };
   }, []);
 
   const currentUserId = user?.id || null;
@@ -84,7 +101,7 @@ const RecoveryPage = () => {
       <div className={styles.container}>
         <div className={styles.pageContent}>
           <h1 className={styles.title}>
-            Привіт, {user?.email?.split("@")[0] || "користувачу"}!
+            Привіт, {user?.name || user?.email?.split("@")[0] || "користувачу"}!
           </h1>
           <p className={styles.subtitle}>
             Завдання на {selectedDate.toLocaleDateString("uk-UA")}
