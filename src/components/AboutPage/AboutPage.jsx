@@ -9,7 +9,6 @@ const AboutPage = () => {
     <div>
       <Header />
       <div className={styles.container}>
-        {/* Декорації */}
         <div className={`${styles.shape} ${styles.shape1}`} />
         <div className={`${styles.shape} ${styles.shape2}`} />
         <div className={`${styles.shape} ${styles.shape3}`} />
