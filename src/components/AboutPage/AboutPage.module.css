@@ -10,7 +10,6 @@
   padding-top: 120px;
 }
 
-/* === Декоративні елементи фону === */
 .shape {
   position: absolute;
   opacity: 0.08;
@@ -84,7 +83,6 @@
   transform: rotate(-30deg);
 }
 
-/* === Ліва секція: текст і логотип === */
 .left {
   flex: 1;
   padding: 0px 5rem 2rem 12rem;
@@ -150,7 +148,6 @@
   opacity: 0.9;
 }
 
-/* === Права секція: інформаційна картка === */
 .right {
   flex: 1;
   display: flex;
