@@ -40,7 +40,6 @@ const AboutPage = () => {
           </p>
         </div>
 
-        {/* Права частина — переваги */}
         <div className={styles.right}>
           <ul className={styles.features}>
             <li>
