@@ -27,7 +27,6 @@ const RecoveryPage = () => {
       }
     };
 
-    // Слухаємо кастомну подію "userUpdated" після редагування імені
     window.addEventListener("userUpdated", updateUser);
 
     return () => {
