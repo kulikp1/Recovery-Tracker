@@ -17,7 +17,6 @@ const AboutPage = () => {
         <div className={`${styles.wavy} ${styles.wavy1}`} />
         <div className={`${styles.wavy} ${styles.wavy2}`} />
 
-        {/* Ліва частина */}
         <div className={styles.left}>
           <img src={logo} alt="Recovery Logo" className={styles.logoImage} />
           <h1 className={styles.title}>Про застосунок</h1>
