@@ -1,4 +1,3 @@
-/* === Основний контейнер сторінки === */
 .container {
   display: flex;
   height: 100vh;
@@ -7,8 +6,8 @@
   position: relative;
   color: white;
   overflow: hidden;
-  align-items: flex-start; /* додано */
-  padding-top: 120px; /* додано */
+  align-items: flex-start;
+  padding-top: 120px;
 }
 
 /* === Декоративні елементи фону === */
