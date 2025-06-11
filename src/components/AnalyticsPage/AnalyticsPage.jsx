@@ -126,7 +126,7 @@ const AnalyticsPage = () => {
                   <Line
                     type="monotone"
                     dataKey="performance"
-                    stroke="#a259ff" // фіолетовий
+                    stroke="#a259ff"
                     strokeWidth={3}
                     dot={{ r: 5 }}
                   />
