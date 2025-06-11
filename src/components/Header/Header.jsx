@@ -67,7 +67,6 @@ const Header = () => {
         </button>
       </nav>
 
-      {/* Модалка редагування імені */}
       {isEditModalOpen && (
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
