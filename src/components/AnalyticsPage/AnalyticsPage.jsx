@@ -65,7 +65,7 @@ const AnalyticsPage = () => {
             date: dt.toLocaleDateString("uk-UA", {
               day: "2-digit",
               month: "2-digit",
-            }), // без року
+            }),
             rawDate: dt,
             month: dt.getMonth(),
             performance: Math.round((d.completed / d.total) * 100),
