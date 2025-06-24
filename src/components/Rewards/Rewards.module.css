@@ -97,7 +97,7 @@
   margin-top: 1.5rem;
 }
 
-/* .rewardItem {
+.rewardItem {
   background: rgba(255, 255, 255, 0.07);
   padding: 1rem;
   border-radius: 15px;
@@ -110,7 +110,7 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   text-align: left;
-} */
+}
 
 .rewardItem:hover {
   transform: scale(1.03);
