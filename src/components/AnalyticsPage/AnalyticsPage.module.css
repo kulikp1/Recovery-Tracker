@@ -102,7 +102,7 @@
   box-shadow: 0 0 10px rgba(162, 89, 255, 0.2);
 }
 
-.monthSelector:hover {
+/* .monthSelector:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: #bf94ff;
 }
@@ -117,4 +117,4 @@
   color: #ddd;
   font-size: 1.1rem;
   padding: 2rem;
-}
+} */
